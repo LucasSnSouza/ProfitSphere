@@ -1,0 +1,16 @@
+@keyframes scale {
+    from{
+        transform: scale(1);
+    }
+    to{
+        transform: scale(0.96);
+    }
+}
+
+.animation-scale-hover:hover{
+    animation: scale .2s;
+}
+
+.animation-scale-active:active{
+    animation: scale .2s;
+}

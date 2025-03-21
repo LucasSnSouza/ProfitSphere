@@ -1,0 +1,63 @@
+:root {
+
+  --color-brand-one: rgb(30, 30, 30);
+  --color-brand-two: rgb(253, 253, 253);
+  --color-brand-three: rgb(255, 60, 0);
+  --color-brand-four: rgb(20, 20, 20);
+  --color-brand-five: rgb(168, 168, 168);
+
+}
+
+.bg-none {
+  background: none;
+}
+
+.bg-color-brand-one {
+  background-color: var(--color-brand-one);
+}
+
+.bg-color-brand-two {
+  background-color: var(--color-brand-two);
+}
+
+.bg-color-brand-three {
+  background-color: var(--color-brand-three);
+}
+
+.bg-color-brand-four {
+  background-color: var(--color-brand-four);
+}
+
+.bg-color-brand-five {
+  background-color: var(--color-brand-five);
+}
+
+.bg-color-brand-star {
+  background-color: var(--color-brand-star);
+}
+
+.bg-color-brand-point-one{
+  background-color: var(--color-brand-one);
+  background-image: radial-gradient(circle, var(--color-brand-five) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.color-brand-one{
+  color: var(--color-brand-one);
+}
+
+.color-brand-two{
+  color: var(--color-brand-two);
+}
+
+.color-brand-three{
+  color: var(--color-brand-three);
+}
+
+.color-brand-four{
+  color: var(--color-brand-four);
+}
+
+.color-brand-five{
+  color: var(--color-brand-five);
+}
