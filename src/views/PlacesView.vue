@@ -40,6 +40,7 @@
                     >
                         <ButtonBasic
                             class="animation-scale-active color-brand-two bg-color-brand-three rounded-md p-md flex flex-column gap-md pointer"
+                            @click="startRuntime()"
                         >
                             <MiscIcon
                                 class="white"
@@ -102,6 +103,9 @@ export default{
         ...Title
     },
     methods:{
+        startRuntime(){
+            pywebview.api.game()
+        }
     },  
     created(){
         this.places = this.places.map(item => ({
