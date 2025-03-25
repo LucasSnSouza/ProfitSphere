@@ -16,11 +16,11 @@
                     :key="index"
                 >
                     <ButtonBasic
-                        class="animation-scale-active color-brand-two bg-color-brand-four rounded-md p-lg flex flex-column gap-md pointer"
+                        class="color-brand-two bg-color-brand-four rounded-md p-lg flex flex-column gap-md pointer"
                         @click="item.opened = !item.opened"
                     >
                         <div class="flex flex-column text-start color-brand-two gap-sm">
-                            <h1 class="font-sm">{{ item?.title }}</h1>
+                            <h1 class="font-sm">{{ item?.name }}</h1>
                             <p class="font-xsm o-half">{{ item?.description }}</p>
                         </div>
                         <div class="flex gap-md">
@@ -30,7 +30,7 @@
                                 class="bg-color-brand-three rounded-sm p-sm"
                                 style="padding-left: 12px;padding-right: 12px;"
                             >
-                                <p class="font-xsm color-brand-one">{{ tag }}</p>
+                                <p class="font-xsm color-brand-one">{{ tag.label }}</p>
                             </ButtonBasic>
                         </div>
                     </ButtonBasic>
@@ -39,7 +39,7 @@
                         class="w-full flex gap-md"
                     >
                         <ButtonBasic
-                            class="animation-scale-active color-brand-two bg-color-brand-three rounded-md p-md flex flex-column gap-md pointer"
+                            class="color-brand-two bg-color-brand-three rounded-md p-md flex flex-column gap-md pointer"
                             @click="startRuntime()"
                         >
                             <MiscIcon
@@ -49,7 +49,7 @@
                             />
                         </ButtonBasic>
                         <ButtonBasic
-                            class="animation-scale-active color-brand-two bg-color-brand-three rounded-md p-md flex flex-column gap-md pointer"
+                            class="color-brand-two bg-color-brand-three rounded-md p-md flex flex-column gap-md pointer"
                         >
                             <MiscIcon
                                 class="white"
@@ -63,16 +63,27 @@
             
         </div>
 
-        <ButtonBasic
-            class="animation-scale-active bg-color-brand-three absolute rounded-sm p-md shadow-sm pointer"
+        <div
+            class="bg-color-brand-four absolute rounded-sm p-xlg flex x-center y-center"
             style="bottom: var(--scale-brand-xlg); right: var(--scale-brand-xlg);"
         >
-            <MiscIcon
-                class="white"
-                icon="plus-icon"
-                :size="[18,18]"
-            />
-        </ButtonBasic>
+            <ButtonBasic
+                class="bg-color-brand-three absolute rounded-sm p-md pointer"
+                @click="modal_create_place = true"
+            >
+                <MiscIcon
+                    class="white"
+                    icon="plus-icon"
+                    :size="[18,18]"
+                />
+            </ButtonBasic>
+        </div>
+
+        <ModalCreatePlace
+            v-if="modal_create_place"
+            @form="createPlace"
+            @exit="modal_create_place = false"
+        />
 
     </div>
     
@@ -88,23 +99,30 @@ import Defaults from '@/defaults/';
 import * as Button from "@/components/Button"
 import * as Input from "@/components/Input"
 import * as Misc from "@/components/Misc"
+import * as Modal from "@/components/Modal"
 import * as Title from "@/components/Title"
 
 export default{
     data(){
         return{
-            places: Defaults.places
+            places: Defaults.places,
+            modal_create_place: false,
         }
     },
     components: {
         ...Button,
         ...Input,
         ...Misc,
+        ...Modal,
         ...Title
     },
     methods:{
         startRuntime(){
             pywebview.api.game()
+        },
+        createPlace(form){
+            this.places.push(form);
+            this.modal_create_place = false
         }
     },  
     created(){

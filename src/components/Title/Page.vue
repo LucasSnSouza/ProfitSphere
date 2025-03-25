@@ -2,14 +2,19 @@
 
     <div class="title-page-wrapper w-full flex y-center gap-xlg justify-between">
 
-        <div class="color-brand-two flex flex-column gap-md">
-            <h1 
-                class="p-sm rounded-sm bg-color-brand-four"
-                style="padding-left: 16px; padding-right: 32px; font-size: 11pt;"
+        <div class="color-brand-two flex flex-column gap-md ">
+            <div 
+                class="flex flex-column gap-xsm p-lg rounded-sm bg-color-brand-four"
+                style="padding-left: 16px; padding-right: 32px;"
             >
-                {{ title }}
-            </h1>
-            <p v-if="description" class="font-sm o-half">{{ description }}</p>
+                <h1 
+                    style="font-size: 11pt;"
+                >
+                    {{ title }}
+                </h1>
+                <p v-if="description" class="font-sm o-half">{{ description }}</p>
+
+            </div>
             <!-- <MiscDivision></MiscDivision> -->
         </div>
 

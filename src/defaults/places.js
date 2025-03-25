@@ -1,50 +1,20 @@
 export default [
     {
-        id: 1,
-        title: "Fazenda Feliz",
-        description: "É uma fazenda feliz e sustentavel, temos a vaquinha mococa.",
-        tags: ["Farm", "Ranch"]
-    },
-    {
-        id: 1,
-        title: "Transportes Soares",
-        description: "Qualquer tipo de serviço, para qualquer hora do dia, levamos desde solidos a organicos.",
-        tags: ["Transport"]
-    },
-    {
-        id: 1,
-        title: "Fazenda Feliz",
-        description: "É uma fazenda feliz e sustentavel, temos a vaquinha mococa.",
-        tags: ["Farm", "Ranch"]
-    },
-    {
-        id: 1,
-        title: "Transportes Soares",
-        description: "Qualquer tipo de serviço, para qualquer hora do dia, levamos desde solidos a organicos.",
-        tags: ["Transport"]
-    },
-    {
-        id: 1,
-        title: "Fazenda Feliz",
-        description: "É uma fazenda feliz e sustentavel, temos a vaquinha mococa.",
-        tags: ["Farm", "Ranch"]
-    },
-    {
-        id: 1,
-        title: "Transportes Soares",
-        description: "Qualquer tipo de serviço, para qualquer hora do dia, levamos desde solidos a organicos.",
-        tags: ["Transport"]
-    },
-    {
-        id: 1,
-        title: "Fazenda Feliz",
-        description: "É uma fazenda feliz e sustentavel, temos a vaquinha mococa.",
-        tags: ["Farm", "Ranch"]
-    },
-    {
-        id: 1,
-        title: "Transportes Soares",
-        description: "Qualquer tipo de serviço, para qualquer hora do dia, levamos desde solidos a organicos.",
-        tags: ["Transport"]
+        name: "Card gerada pelo sistema",
+        description: "Uma card gerada pelo sistema, isso é apenas uma descrição de teste.",
+        tags: [
+            {
+                id: 0,
+                label: "Farm" 
+            },
+            {
+                id: 1,
+                label: "Ranch" 
+            },
+            {
+                id: 2,
+                label: "Transport" 
+            },
+        ]
     }
 ]

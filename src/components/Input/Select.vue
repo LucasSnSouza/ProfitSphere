@@ -1,6 +1,6 @@
 <template>
     <div 
-        class="input-select-wrapper"
+        class="input-select-wrapper font-sm"
         :class="class"
     >
         <div 

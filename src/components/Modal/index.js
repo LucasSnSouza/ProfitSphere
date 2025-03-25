@@ -1,7 +1,7 @@
 import ModalBasic from './Basic.vue';
-import ModalBottomSide from './BottomSide.vue';
+import ModalCreatePlace from './CreatePlace.vue';
 
 export {
     ModalBasic,
-    ModalBottomSide,
+    ModalCreatePlace,
 }
