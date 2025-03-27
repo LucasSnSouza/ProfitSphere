@@ -5,6 +5,7 @@
         class="app-wrapper flex w-full h-full bg-color-brand-one oclude"
     >
         <div 
+            v-if="$route.meta.sidebar"
             class="sidebar-frame flex flex-column gap-md h-full bg-color-brand-four p-md"
             style="padding-right: 0px;"
         >

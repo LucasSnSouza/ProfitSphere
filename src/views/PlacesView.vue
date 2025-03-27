@@ -92,6 +92,7 @@
 <script>
 
 import { useSystemStore } from '@/stores/system.js'
+import { usePlaceStore } from '@/stores/place.js'
 
 import Utils from '@/utils/';
 import Defaults from '@/defaults/';
@@ -105,7 +106,7 @@ import * as Title from "@/components/Title"
 export default{
     data(){
         return{
-            places: Defaults.places,
+            places: [],
             modal_create_place: false,
         }
     },
@@ -116,20 +117,27 @@ export default{
         ...Modal,
         ...Title
     },
+    computed:{
+        computed_places(){
+            return usePlaceStore().getListPlaces
+        }
+    },
     methods:{
         startRuntime(){
             pywebview.api.game()
         },
-        createPlace(form){
-            this.places.push(form);
+        async createPlace(form){
+            await usePlaceStore().fetchCreatePlace(form)
+            this.places.push(usePlaceStore().getLastDataCreatedPlace.place)
             this.modal_create_place = false
         }
-    },  
-    created(){
-        this.places = this.places.map(item => ({
-            ...item,
-            opened: false
-        }))
+    },
+    
+    async created(){
+
+        await usePlaceStore().fetchListPlaces()
+        this.places = this.computed_places
+
     }
 }
 
