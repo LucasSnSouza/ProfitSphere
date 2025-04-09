@@ -1,15 +1,25 @@
+"""
+Outpost Studio: Servidor de Gerenciamento de Dados
+
+Camada de inicialização do servidor.
+
+Autor: Lucas dos Santos Souza
+Criado em: 04/04/2025
+"""
+
+import utils, router
+
 from flask import Flask
-from flask_cors import CORS
-from routes import routes
-import services as Controller
-import threading
+from flask_cors import CORS # type: ignore
 
-WebServer = Flask(__name__)
-CORS(WebServer)
-ControllerThread = threading.Thread(target=Controller.State.run)
-ControllerThread.start()
 
-routes(Controller.State, WebServer)
+service_web_server = Flask(__name__)
+CORS(service_web_server)
+
 
 if __name__ == "__main__":
-    WebServer.run(debug=True)
+    
+    utils.Preferences().load('preferences.json').apply()
+    router.Routes().bind(service_web_server)
+    
+    service_web_server.run(debug=True)

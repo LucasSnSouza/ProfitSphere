@@ -1,8 +1,6 @@
 import uuid, json, os
 from datetime import datetime
 
-from .place import Place
-
 class State:
     
     def __init__(self):
@@ -11,29 +9,20 @@ class State:
     def run(self):
         pass
     
-    def response(self, code: int, message: str = None, response = None ) -> dict:
-        result = {
-            "code": code
-        }
-        if message is not None:
-            result["message"] = message
-        if response is not None:
-            result["response"] = response
-        return result
     
-    def envoriment(self, place_id: str):
+    def environment(self, place_id: str):
         try:
-            place_folder = f"{os.getcwd()}/data/places/{place_id}/"
-            envoriment_data = None
-            with open(f"{place_folder}/envoriment.json", 'r') as archive:
-                envoriment_data = json.load(archive)
-            return self.response(200, "local criado com sucesso", envoriment_data)
+            place_folder = f"{os.getcwd()}/storage/storage_places/{place_id}/"
+            environment_data = None
+            with open(f"{place_folder}/environment.json", 'r') as archive:
+                environment_data = json.load(archive)
+            return self.response(200, "local criado com sucesso", environment_data)
         except Exception as e:
             return self.response(422, "Não foi possivel criar uma região", e)
     
     def place(self, place_id: str):
         try:
-            place_folder = f"{os.getcwd()}/data/places/{place_id}/"
+            place_folder = f"{os.getcwd()}/storage/storage_places//{place_id}/"
             place_data = None
             with open(f"{place_folder}/manifest.json", 'r') as archive:
                 place_data = json.load(archive)
@@ -43,7 +32,7 @@ class State:
     
     def places(self):
         try:
-            places_folder = f"{os.getcwd()}/data/places"
+            places_folder = f"{os.getcwd()}/storage/storage_places/"
             places_folders_list = os.listdir(places_folder)
             places_list = []
             for folder in places_folders_list:
@@ -56,7 +45,7 @@ class State:
     def create_place(self, place_form: dict ) -> dict:
         try:
             place_uuid = uuid.uuid1()
-            place_folder = f"{os.getcwd()}/data/places/{place_uuid}"
+            place_folder = f"{os.getcwd()}/storage/storage_places/{place_uuid}"
             place_data = {
                             **place_form,
                             "id": str(place_uuid), 
@@ -89,7 +78,7 @@ class State:
     def create_local_enterprise(self, place_form: dict ) -> dict:
         try:
             enterprise_uuid = uuid.uuid1()
-            enterprise_folder = f"{os.getcwd()}/data/"
+            enterprise_folder = f"{os.getcwd()}/data/storage_enterprises/{enterprise_uuid}"
             enterprise_data = {
                             **place_form,
                             "id": str(enterprise_uuid), 
@@ -97,7 +86,8 @@ class State:
                             "createdAt": str(datetime.now()),
                             "updatedAt": str(datetime.now())
                         }
-            with open(f"{enterprise_folder}/enterprise.json", "w", encoding="utf-8") as archive:
+            os.makedirs(enterprise_folder, exist_ok=True)
+            with open(f"{enterprise_folder}/manifest.json", "w", encoding="utf-8") as archive:
                 json.dump(
                     enterprise_data,
                     archive,

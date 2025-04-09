@@ -13,13 +13,13 @@ export const usePlaceStore = defineStore('place', {
     },
     actions: {
         async fetchListPlaces(){
-            await Utils.fetch.request("/places", "GET").then(data => {
-                this.list_of_places = data.response
+            await Utils.fetch.request("/places", "GET").then(({ data }) => {
+                this.list_of_places = data
             })
         },
         async fetchCreatePlace(form){
-            await Utils.fetch.request("/create-place", "POST", form).then(data => {
-                this.last_data_created_place = data.response
+            await Utils.fetch.request("/create-place", "POST", form).then(({ data }) => {
+                this.last_data_created_place = data
             })
         }
     }

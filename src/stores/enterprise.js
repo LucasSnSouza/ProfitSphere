@@ -11,8 +11,8 @@ export const useEnterpriseStore = defineStore('place', {
     },
     actions: {
         async fetchCreateEnterprise(form){
-            await Utils.fetch.request("/create-local-enterprise", "POST", form).then(data => {
-                this.enterprise = data.response
+            await Utils.fetch.request("/create-local-enterprise", "POST", form).then(({ data }) => {
+                this.enterprise = data
             })
         },
     }
