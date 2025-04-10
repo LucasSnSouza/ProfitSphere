@@ -17,6 +17,11 @@ export const usePlaceStore = defineStore('place', {
                 this.list_of_places = data
             })
         },
+        async fetchListPlacesByEnterpriseId(id){
+            await Utils.fetch.request(`/places/enterprise/${id}`, "GET").then(({ data }) => {
+                this.list_of_places = data
+            })
+        },
         async fetchCreatePlace(form){
             await Utils.fetch.request("/create-place", "POST", form).then(({ data }) => {
                 this.last_data_created_place = data

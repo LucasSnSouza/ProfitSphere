@@ -18,8 +18,14 @@ class PlaceController():
         except Exception:
             return Responder.error("O place não foi teste", 404)
         
+    def get_all_places_by_enterprise_id(self, id):
+        try:
+            return Responder.success(self.place_service.get_all_by_enterprise_id(id))
+        except Exception:
+            return Responder.error("O place não foi teste", 404)
+        
     def create_place(self, form):
         try:
             return Responder.success(self.place_service.create(form))
         except Exception:
-            return Responder.error("O place não foi teste", 404)
+            return Responder.error(str(Exception), 404)

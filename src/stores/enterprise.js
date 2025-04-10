@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 
 import Utils from "@/utils/"
 
-export const useEnterpriseStore = defineStore('place', {
+export const useEnterpriseStore = defineStore('enterprise', {
     state: () => ({
         enterprise: null
     }),
@@ -15,5 +15,10 @@ export const useEnterpriseStore = defineStore('place', {
                 this.enterprise = data
             })
         },
+        async fetchEnterpriseByAccess(id){
+            await Utils.fetch.request(`/enterprise/access/${id}`, "GET").then(({ data }) => {
+                this.enterprise = data
+            })
+        }
     }
 })

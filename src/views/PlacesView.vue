@@ -40,6 +40,7 @@
                     >
                         <ButtonBasic
                             class="color-brand-two bg-color-brand-three rounded-md p-md flex flex-column gap-md pointer"
+                            title="3D View: para gerenciamento."
                             @click="startRuntime()"
                         >
                             <MiscIcon
@@ -50,6 +51,7 @@
                         </ButtonBasic>
                         <ButtonBasic
                             class="color-brand-two bg-color-brand-three rounded-md p-md flex flex-column gap-md pointer"
+                            title="Editar: para editar informações sobre a empresa."
                         >
                             <MiscIcon
                                 class="white"
@@ -93,6 +95,7 @@
 
 import { useSystemStore } from '@/stores/system.js'
 import { usePlaceStore } from '@/stores/place.js'
+import { useEnterpriseStore } from '@/stores/enterprise.js'
 
 import Utils from '@/utils/';
 import Defaults from '@/defaults/';
@@ -127,15 +130,20 @@ export default{
             pywebview.api.game()
         },
         async createPlace(form){
-            await usePlaceStore().fetchCreatePlace(form)
+            await usePlaceStore().fetchCreatePlace({
+                ...form,
+                enterprise: {
+                    id: useEnterpriseStore().getEnterprise.id
+                }
+            })
             this.places.push(usePlaceStore().getLastDataCreatedPlace.place)
             this.modal_create_place = false
         }
     },
     
-    async created(){
+    async mounted(){
 
-        await usePlaceStore().fetchListPlaces()
+        await usePlaceStore().fetchListPlacesByEnterpriseId(useEnterpriseStore().getEnterprise.id)
         this.places = this.computed_places
 
     }

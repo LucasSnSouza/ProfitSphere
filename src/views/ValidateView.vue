@@ -25,7 +25,10 @@
             <div v-if="type_form_selected == 'SINGIN'" class="flex flex-column gap-lg w-half">
                 <InputBasic
                     class="bg-color-brand-one p-lg rounded-sm flex"
+                    input-class="color-brand-two"
                     placeholder="Access code..."
+                    v-model="form_local_singin['access']"
+                    :value="form_local_singin['access']"
                 >
                     <MiscIcon
                         class="bg-color-brand-two"
@@ -41,18 +44,21 @@
             <div v-else class="flex flex-column gap-lg w-half">
                 <InputBasic
                     class="bg-color-brand-one p-lg rounded-sm flex"
+                    input-class="color-brand-two"
                     placeholder="Business name ..."
                     v-model="form_local_singup['name']"
                     :value="form_local_singup['name']"
                 />
                 <InputText
                     class="bg-color-brand-one p-lg rounded-sm flex"
+                    input-class="color-brand-two"
                     placeholder="Business description ..."
                     v-model="form_local_singup['description']"
                     :value="form_local_singup['description']"
                 />
                 <InputBasic
                     class="bg-color-brand-one p-lg rounded-sm flex"
+                    input-class="color-brand-two"
                     placeholder="Access code..."
                     v-model="form_local_singup['access']"
                     :value="form_local_singup['access']"
@@ -68,7 +74,7 @@
                     <ButtonBasic
                         class="p-lg rounded-md bg-color-brand-three color-brand-two pointer"
                         style="padding-left: 32px;padding-right: 32px;"
-                        @click="this.$router.push({ path: '/dashboard' })"
+                        @click="getEnterpriseByAccess()"
                     >
                         <p>Connect</p>
                     </ButtonBasic>
@@ -132,6 +138,7 @@ export default{
     data(){
         return{
             type_form_selected: "SINGIN",
+            form_local_singin: {},
             form_local_singup: {}
         }
     },
@@ -150,6 +157,15 @@ export default{
         },
         createEnterprise(){
             useEnterpriseStore().fetchCreateEnterprise(this.form_local_singup)
+        },
+        async getEnterpriseByAccess(){
+            try{
+                await useEnterpriseStore().fetchEnterpriseByAccess(this.form_local_singin?.access)
+                this.$router.push({ path: "dashboard" })
+            }
+            catch (error){
+                
+            }
         }
     },
     async created(){

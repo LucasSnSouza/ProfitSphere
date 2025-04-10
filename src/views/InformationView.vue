@@ -108,6 +108,7 @@ export default{
         setNextFrame(){
             if(this.information_index > this.informations_form.length - 2){
                 this.$router.push({ path: "/validate" })
+                return;
             }
             this.information_index++
         }

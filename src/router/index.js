@@ -13,13 +13,13 @@ const router = createRouter({
       path: '/',
       name: 'Information',
       component: InformationView,
-      meta: { sidebar: false }
+      meta: { title: 'Information', sidebar: false }
     },
     {
       path: '/validate',
       name: 'Validate',
       component: ValidateView,
-      meta: { sidebar: false }
+      meta: { title: 'Validate', sidebar: false }
     },
     {
       path: '/dashboard',

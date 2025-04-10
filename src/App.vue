@@ -62,7 +62,7 @@ export default {
                     selected: true,
                     text: "Dashboard",
                     icon: "book-icon",
-                    navigation: "/",
+                    navigation: "/dashboard",
                 },
                 {
                     selected: false,
@@ -107,7 +107,7 @@ export default {
     },
     computed: {
         title() {
-            return this.$route.meta.title;
+            return this.$route.meta?.title;
         },
         theme() {
             return useSystemStore().getTheme;
